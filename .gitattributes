@@ -1,2 +1,13 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+.MinhaAPICompleta/src/DevIO.Api/bin/*
+.MinhaAPICompleta/src/DevIO.Api/obj/*
+
+.MinhaAPICompleta/src/DevIO.Business/bin/*
+.MinhaAPICompleta/src/DevIO.Business/obj/*
+
+.MinhaAPICompleta/src/DevIO.Data/bin/*
+.MinhaAPICompleta/src/DevIO.Data/obj/*
+
+
