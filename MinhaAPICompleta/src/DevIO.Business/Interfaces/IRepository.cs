@@ -16,7 +16,7 @@ namespace DevIO.Business.Interfaces
     {
         Task Adicionar(TEntity entity);
 
-        Task<TEntity> ObtertPorId(Guid id);
+        Task<TEntity> ObterPorId(Guid id);
         
         Task<List<TEntity>> ObterTodos();
 

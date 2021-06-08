@@ -42,6 +42,13 @@ namespace DevIO.Api
             // configuração do AutoMapper
             services.AddAutoMapper(typeof(Startup));
 
+            // configuração para não validar erros automáticos ModelState
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                // suprime a validação da ViewModel automatica
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
             // adicionar serviços de dependencias 
             services.ResolveDependencies();
         }
