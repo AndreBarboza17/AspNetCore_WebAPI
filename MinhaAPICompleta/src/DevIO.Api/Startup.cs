@@ -49,6 +49,19 @@ namespace DevIO.Api
                 options.SuppressModelStateInvalidFilter = true;
             });
 
+            // liberação de CORS
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Development",
+                    builder => 
+                    builder.AllowAnyOrigin()
+                    .WithOrigins("http://localhost:4200")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .SetIsOriginAllowed(origin => true) // allow any origin
+                    .AllowCredentials());
+            });
+
             // adicionar serviços de dependencias 
             services.ResolveDependencies();
         }
@@ -66,6 +79,8 @@ namespace DevIO.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("Development");
 
             app.UseEndpoints(endpoints =>
             {
