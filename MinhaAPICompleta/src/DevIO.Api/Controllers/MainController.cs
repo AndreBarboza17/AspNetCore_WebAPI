@@ -34,10 +34,13 @@ namespace DevIO.Api.Controllers
                 });
             }
 
+            var erros = _notificador.ObterNotificacoes().Select(n => n.Mensagem).ToList();
+
+
             return BadRequest(new
             {
                 success = false,
-                errors = _notificador.ObterNotificacoes().Select(n => n.Mensagem)
+                errors = erros
             });
         }
 

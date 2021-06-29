@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from "rxjs/operators";
 import { Fornecedor } from '../models/Fornecedor';
 import { Produto } from '../models/Produto';
 import { BaseService } from 'src/app/base/baseService';
+import { ConsoleReporter } from 'jasmine';
 
 @Injectable()
 export class ProdutoService extends BaseService {
@@ -34,8 +35,13 @@ export class ProdutoService extends BaseService {
             .post(this.UrlServiceV1 + 'produtos', produto, super.ObterAuthHeaderJson())
             .pipe(
                 map(super.extractData),
-                catchError(super.serviceError)
+                // catchError(super.serviceError)
+                catchError(e => throwError(this.errorHandler(e)))
             );
+    }
+
+    errorHandler(erro: any) {
+        console.log(erro)
     }
 
     obterFornecedores(): Observable<Fornecedor[]> {

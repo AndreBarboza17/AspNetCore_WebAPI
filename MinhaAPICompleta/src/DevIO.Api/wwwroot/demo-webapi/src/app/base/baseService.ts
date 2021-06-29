@@ -27,8 +27,8 @@ export abstract class BaseService {
     protected ObterAuthHeaderJson(){
         return {
             headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.obterTokenUsuario()}`
+                'Content-Type': 'application/json',                
+                // 'Authorization': `Bearer ${this.obterTokenUsuario()}`
             })
         };
     }
@@ -56,7 +56,6 @@ export abstract class BaseService {
             errMsg = error.message ? error.message : error.toString();
         }
 
-        console.error(errMsg);
         return throwError(errMsg);
     }
 }

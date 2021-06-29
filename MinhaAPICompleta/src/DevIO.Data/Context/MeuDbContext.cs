@@ -15,7 +15,7 @@ namespace DevIO.Data.Context
 
         public DbSet<Fornecedor> Fornecedores { get; set; }
 
-        public MeuDbContext(DbContextOptions options) : base(options)
+        public MeuDbContext(DbContextOptions<MeuDbContext> options) : base(options)
         {
             // Importante para permitir realizar a edição dos models
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;

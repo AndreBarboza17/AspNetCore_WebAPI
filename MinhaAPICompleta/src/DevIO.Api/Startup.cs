@@ -37,7 +37,10 @@ namespace DevIO.Api
 
             services.AddControllers().AddNewtonsoftJson(options =>
                  options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-             );            
+             );
+
+            // configuração do Identity
+            services.AddIdentityConfiguration(Configuration);
 
             // configuração do AutoMapper
             services.AddAutoMapper(typeof(Startup));
@@ -53,14 +56,14 @@ namespace DevIO.Api
             services.AddCors(options =>
             {
                 options.AddPolicy("Development",
-                    builder => 
+                    builder =>
                     builder.AllowAnyOrigin()
                     .WithOrigins("http://localhost:4200")
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .SetIsOriginAllowed(origin => true) // allow any origin
                     .AllowCredentials());
-            });
+            });            
 
             // adicionar serviços de dependencias 
             services.ResolveDependencies();
@@ -78,9 +81,11 @@ namespace DevIO.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseCors("Development");
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
